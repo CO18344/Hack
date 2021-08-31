@@ -1,0 +1,24 @@
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int palindrome(string str){
+    /* Write your code here */
+
+}
+int main(int argc, char const *argv[])
+{
+    int t;
+    string str;
+    int result;
+    cin>>t;
+
+    for(int i=0;i<t;i++){
+    cin>>str;
+    result = palindrome(str);
+    cout<<result<<endl;
+    }
+ 	
+ 	
+ 	return 0;
+} 

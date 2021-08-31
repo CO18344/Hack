@@ -1,0 +1,454 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+
+
+ <!-- Bootstrap CSS -->
+ <script src="https://code.jquery.com/jquery-3.5.1.js" 
+          integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" 
+            crossorigin="anonymous"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+
+
+<style type="text/css">
+#item {
+    color: white;
+    padding: .5rem 1rem;
+    font-size: 16px;
+    border: none;
+    
+}
+.block{
+  cursor:pointer;
+}
+.myItem{
+  display:flex;
+    padding: .5rem 1rem;
+    font-size: 16px;
+    border: none;
+    
+
+}
+#item:hover, #item:focus{
+    background-color: rgb(61, 80, 219);
+}
+
+
+
+.menu{
+    position: relative;
+    display: inline-block;
+}
+.myMenu {
+  margin-bottom:4px;
+  width:100%;
+    display: inline-block;
+}
+
+
+#submenu{
+    display: none;
+    position: absolute;
+    background-color: aliceblue;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.mySubmenu{
+    display: none;
+    background-color: aliceblue;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+#submenu a{
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.mySubmenu a{
+      color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+
+#submenu a:hover{
+    background-color: #4CAF50;
+}
+
+.mySubmenu a:hover{
+  background-color: #4CAF50;
+}
+
+.btn-primary{
+  pointer-events: none;
+}
+ 
+div button{
+  margin: 5px 5px;
+}
+
+body,html{
+    height: 100%;
+}
+
+.left-container{
+  background:#243242;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin: 0;
+  padding-bottom: 150px;
+  padding-top: 5px;
+}
+
+
+body{
+  overflow:hidden ;
+  background: linear-gradient(to right, rgb(224, 234, 252), rgb(207, 222, 243));
+}
+
+.head-container{
+width: 70%;
+display: flex;
+flex-flow: wrap;
+align-content: space-around;
+justify-content: center;
+margin-left: auto;
+margin-right: auto;
+margin-bottom: 50px;
+}
+
+.container-fluid{
+  height: 100%;
+  margin: 0;
+  display: flex;
+  padding:0;
+}
+
+.heading{
+  width: 100%;
+}
+
+.heading-back{
+  padding-top: 18px;
+  background-color: white;
+  height: 75px;
+}
+
+.margin-problem-container{
+  width: 100%;
+}
+
+.desc-section div{
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  text-align: justify;
+  text-justify: inter-word;
+  color: #bbc2c3 ;
+}
+
+.desc-section span{
+  font-weight: bold;
+  color:#d4e4f9;
+}
+
+.desc-section div .desc-back{
+  background: #080808;
+  padding: 10px 10px;
+  color: #d4e4f9;
+}
+
+.btn-success{
+  width: 20%;
+  height: 40px;
+  background-color: white;
+  border-color: #4CAF50;
+  border-width: 2px;
+  color: black;
+}
+
+.btn-success:focus{
+  background-color: white; /* Green */
+  border-color: #4CAF50;
+  color: black;
+}
+
+.btn-success:hover {
+  background-color: #4CAF50; /* Green */
+
+  border-color: #4CAF50;
+  border-width: 2px;
+  color: white;
+}
+
+.container{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.right-container{
+  background:#243242;
+  margin: 0;
+  padding-top: 5px;
+  overflow-y: scroll;
+}
+
+.internal-container{
+  display: flex;
+  flex-direction: column;
+  justify-content:flex-start;
+  height: 100%;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  justify-content:flex-start;
+  height: 81%;
+}
+
+form .internal-container textarea{
+  resize: none;
+  height: 100%;
+}
+
+form .internal-container .btns{
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  height: 50px;
+}
+
+</style>
+</head>
+
+<body>
+  <header>
+  <nav style="background: linear-gradient(to right, rgb(55, 59, 68), rgb(66, 134, 244));" class="navbar navbar-expand-sm navbar-dark fw-bolder">
+    <div class="mx-auto d-sm-flex d-block flex-sm-nowrap">
+        <a class="navbar-brand" href="/dashboard/">CodeRS</a>
+        <img style="margin-left: -10px;" src="{% static 'c-program.svg' %}" width="35" height="35">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample11" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse text-center" id="navbarsExample11">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/pending/">Leaderboard</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link active" href="/pending/">About</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link active" href="/pending/">Code Playground</a>
+        </li>
+
+        {% comment %} <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+          <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+        </svg>
+            {{user}}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/pending/">
+            Profile</a></li>
+            <li><a class="dropdown-item" href="/pending/">Settings</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/logout/">Logout</a></li>
+          </ul>
+        </li> {% endcomment %}
+
+        <li>
+        <div class="menu">
+
+      <div id="item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+          <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+        </svg>
+        {{user}}
+      </div>
+      <div id="submenu">
+        <a class="nav-link" href="/pending/">Profile</a>
+        <a class="nav-link" href="/pending/">Settings</a>
+        <a class="nav-link" href="/logout/">Logout</a>
+      </div>
+    </div>
+        </li>
+      </ul>
+        </div>
+    </div>
+</nav>
+</header>
+
+<div class="heading-back">
+<div class="head-container">
+
+  <div class="heading">
+    <h2>{{problem.title}}</h2>
+  </div>
+
+</div>
+</div>
+
+
+<div class="container-fluid">
+  <div id="desc-section" class="overflow-scroll left-container margin-problem-container desc-section">
+    <div class="level">
+      <span>Difficulty level</span> {{problem.level|title}}
+    </div>
+
+    <div class="description">
+      <span>Description</span>
+      {{description|safe}}
+    </div>
+
+    {% if constraints %}
+    <div class="constraints">
+      <span>Constraints</span>
+      <div class='desc-back'>
+      {{constraints}}
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="example">
+      <span>Sample Output</span>
+      {{example|safe}}
+    </div>
+
+    <div class="input">
+      <span>Input format</span>
+      {{inputf|safe}}
+    </div>
+
+    <div class="output">
+      <span>Output format</span>
+      {{outputf|safe}}
+    </div>
+
+     {% if explanation %}
+    <div class="explanation">
+      <span>Explanation</span>
+      {{explanation|safe}}
+    </div>
+    {% endif %}
+
+  </div>
+
+  <div id='rt' class="right-container margin-problem-container">
+    <form method="post">
+      {% csrf_token %}  
+      <div class="internal-container">
+
+        <textarea style="width:100%; color:white;" name='code-written' id="code-written" class="overflow-scroll bg-dark margin-problem-container">
+          {{starter}}
+        </textarea>
+
+        <div class="btns">
+          <a id="download-link" style="display: inline;" class="language-content" download="{{problem.title}}.{{extension}}" onclick='doDL(document.getElementById("code-written").value)' type="button">
+            <button style="margin: 5px 4px;" class="btn btn-success shadow-none w-100" type="button">Download Code</button>
+          </a>
+
+          <a style="display:inline; margin-right: 10px;" class="language-content" href='/dashboard/problems/code/?id={{problem.id}}' type="button">
+            <button id="submitme" style="margin: 5px 4px; width: 100%; " class="btn btn-success shadow-none">Submit Code</button>
+          </a>
+        </div>
+      </div>
+    </form>
+
+<div id="result" style="display:flex; background-color: black; padding-top: 10px;padding-bottom: 135px; justify-content: space-between;" class="d-flex align-items-center text-primary container">
+</div>
+  </div>
+
+
+<script type="text/javascript">
+$(function() {
+    $("#item").click(function() {
+        $("#submenu").slideToggle(500);
+    });
+}); 
+
+
+function doDL(s){
+var text = s;
+var data = new Blob([text], {type: 'text/plain'});
+
+var url = window.URL.createObjectURL(data);
+
+document.getElementById('download-link').href = url;
+}
+var myVar;
+var start = 0;    
+function update(){
+        $.ajax({
+          type: "POST",
+          url: '/dashboard/problems/code/update/?id={{problem.id}}&running=True',
+          data:{
+            csrfmiddlewaretoken: '{{ csrf_token }}'
+            },
+          success: function(response){
+            $('#result').html(response);
+            console.log(response);
+          }
+        });
+        start += 1;
+
+        if(start >= 5){
+          stopFunction();
+        }
+    
+}
+function stopFunction(){
+    clearInterval(myVar); // stop the timer
+}
+
+$("form").on("submit", function (e) {
+    $('#result').html('<div style="margin:auto; display:flex;"><span>Loading Testcases</span> &nbsp <div class="spinner-border" role="status"></div></div>');
+    $('#rt').animate({
+    scrollTop: $('#rt').get(0).scrollHeight
+}, 1500);
+    var dataString = $(this).serialize();
+     
+    $.ajax({
+      type: "POST",
+      url: '/dashboard/problems/code/?id={{problem.id}}',
+      data: dataString,
+      success: function (response) {
+        // Display message back to the user here
+        $('#result').html(response);
+        $('#rt').animate({
+    scrollTop: $('#rt').get(0).scrollHeight
+}, 2000);
+
+      }
+    });
+ 
+    e.preventDefault();
+});
+</script>
+
+
+<!--     <div>
+
+    </div> -->
+</div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+</body>
+</html>
+

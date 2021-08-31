@@ -1,0 +1,4 @@
+6 is even number
+35 is odd number
+29 is odd number
+13 is odd number
